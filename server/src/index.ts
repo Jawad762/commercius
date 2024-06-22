@@ -59,12 +59,13 @@ fastify.register(roomRoutes, { prefix: '/api/rooms' })
 fastify.register(messageRoutes, { prefix: '/api/messages' })
 fastify.register(authRoutes, { prefix: '/api/auth' })
 
-fastify.listen({ port: 4000 }, (err, address) => {
+// @ts-ignore
+fastify.listen({ port: process.env.PORT }, (err, address) => {
     if (err) {
         fastify.log.error(err)
         process.exit(1)
     }
-    else console.log('Server listening on port 8000')
+    else console.log(`Server listening on port ${process.env.PORT}`)
 })
 
 // ngrok.connect({ addr: 8000, authtoken_from_env: true })
