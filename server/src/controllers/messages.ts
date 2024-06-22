@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { fastify } from "../index";
+import { fastify } from "../index.js";
 import jwt, { JwtPayload } from 'jsonwebtoken'
 
 export const sendMessage = async (

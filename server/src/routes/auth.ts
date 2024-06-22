@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify"
-import { checkAuth, googleSignin, resendVerificationCode, signin, signup, verifyCode } from "../controllers/auth"
+import { checkAuth, googleSignin, resendVerificationCode, signin, signup, verifyCode } from "../controllers/auth.js"
 
 const routes = async (fastify: FastifyInstance, _options: Object) => {
     // continue with google

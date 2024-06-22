@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify"
-import { getPosts, createPost, getActivePosts, deletePost, getPopularPosts } from "../controllers/posts"
-import { verifyAuth } from "../helpers/verifyAuth"
+import { getPosts, createPost, getActivePosts, deletePost, getPopularPosts } from "../controllers/posts.js"
+import { verifyAuth } from "../helpers/verifyAuth.js"
 
 const routes = async (fastify: FastifyInstance, _options: Object) => {
     // get posts

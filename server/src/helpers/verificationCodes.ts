@@ -1,6 +1,6 @@
-import { sendEmail } from "./emails"
+import { sendEmail } from "./emails.js"
 import crypto from 'crypto'
-import { fastify } from '../index'
+import { fastify } from '../index.js'
 
 export const sendVerificationCode = async (user_id: number, email: string) => {
     const code = crypto.randomInt(10000, 99999).toString()

@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify"
-import { addToFavorites, getFavorites, removeFromFavorites } from "../controllers/favorites"
-import { verifyAuth } from "../helpers/verifyAuth"
+import { addToFavorites, getFavorites, removeFromFavorites } from "../controllers/favorites.js"
+import { verifyAuth } from "../helpers/verifyAuth.js"
 
 const routes = async (fastify: FastifyInstance, _options: Object) => {
     // get user favorites
