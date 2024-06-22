@@ -9,7 +9,7 @@ import userRoutes from './routes/users.js'
 import authRoutes from './routes/auth.js'
 import messageRoutes from './routes/messages.js'
 import roomRoutes from './routes/rooms.js'
-import ngrok from '@ngrok/ngrok'
+// import ngrok from '@ngrok/ngrok'
 import dotenv from 'dotenv'
 import { Server } from 'socket.io'
 dotenv.config()
@@ -59,7 +59,7 @@ fastify.register(roomRoutes, { prefix: '/api/rooms' })
 fastify.register(messageRoutes, { prefix: '/api/messages' })
 fastify.register(authRoutes, { prefix: '/api/auth' })
 
-fastify.listen({ port: 8000 }, (err, address) => {
+fastify.listen({ port: 4000 }, (err, address) => {
     if (err) {
         fastify.log.error(err)
         process.exit(1)
@@ -67,8 +67,8 @@ fastify.listen({ port: 8000 }, (err, address) => {
     else console.log('Server listening on port 8000')
 })
 
-ngrok.connect({ addr: 8000, authtoken_from_env: true })
-	.then(listener => console.log(`Ingress established at: ${listener.url()}`));
+// ngrok.connect({ addr: 8000, authtoken_from_env: true })
+// 	.then(listener => console.log(`Ingress established at: ${listener.url()}`));
 
 declare module "fastify" {
     interface FastifyInstance {
