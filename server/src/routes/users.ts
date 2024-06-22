@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify"
-import { getUser, updateUser, deleteUser } from "../controllers/users"
-import { verifyAuth } from "../helpers/verifyAuth"
+import { getUser, updateUser, deleteUser } from "../controllers/users.ts"
+import { verifyAuth } from "../helpers/verifyAuth.ts"
 
 const routes = async (fastify: FastifyInstance, _options: any) => {
     // find specific user

@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify"
-import { fastify } from "../index"
+import { fastify } from "../index.ts"
 import jwt, { JwtPayload } from 'jsonwebtoken'
 
 export const getFavorites = async (request: FastifyRequest, reply: FastifyReply) => {

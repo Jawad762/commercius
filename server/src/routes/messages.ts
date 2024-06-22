@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify"
-import { getMessages, sendMessage } from "../controllers/messages"
-import { verifyAuth } from "../helpers/verifyAuth"
+import { getMessages, sendMessage } from "../controllers/messages.ts"
+import { verifyAuth } from "../helpers/verifyAuth.ts"
 
 const routes = async (fastify: FastifyInstance, _options: Object) => {
     // get room messages

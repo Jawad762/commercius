@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { Post, fastify } from '../index'
+import { Post, fastify } from '../index.ts'
 import jwt, { JwtPayload } from 'jsonwebtoken'
 
 export const getPosts = async (request: FastifyRequest<{ Params: { category: string, country: string }}>, reply: FastifyReply) => {
