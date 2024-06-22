@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify"
-import { createRoom, getUserRooms } from "../controllers/rooms.ts"
-import { verifyAuth } from "../helpers/verifyAuth.ts"
+import { createRoom, getUserRooms } from "../controllers/rooms"
+import { verifyAuth } from "../helpers/verifyAuth"
 
 const routes = async (fastify: FastifyInstance, _options: Object) => {
     // get user rooms

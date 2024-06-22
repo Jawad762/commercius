@@ -1,10 +1,10 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { User, fastify } from '../index.ts'
+import { User, fastify } from '../index'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
-import { sendEmail } from '../helpers/emails.ts'
-import { sendVerificationCode, verifyExpiration } from '../helpers/verificationCodes.ts'
+import { sendEmail } from '../helpers/emails'
+import { sendVerificationCode, verifyExpiration } from '../helpers/verificationCodes'
 
 export const googleSignin = async (request: FastifyRequest<{ Body: User }>, reply: FastifyReply) => {
     try {
