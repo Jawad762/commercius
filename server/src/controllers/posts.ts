@@ -47,7 +47,7 @@ export const createPost = async (request: FastifyRequest<{ Body: Post }>, reply:
         const { id: user_id } = jwt.decode(token as string) as JwtPayload
 
         await fastify.pg.transact(async client => {
-            await client.query('INSERT INTO posts (user_id, category, title, description, price, pictures, country, city) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [user_id, category, title, description, price, pictures, country, city])
+            await client.query('INSERT INTO posts (user_id, category, title, description, price, pictures, country, city, date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)', [user_id, category, title, description, price, pictures, country, city, new Date()])
         })
         reply.code(200).send('success')
     } catch (error) {
@@ -118,6 +118,8 @@ export const getPopularPosts = async (request: FastifyRequest, reply: FastifyRep
             posts.date,
             users.username,
             users.profile_picture,
+            users.email,
+            users.phone_number,
             CASE
                 WHEN (SELECT post_id FROM favorites WHERE post_id = posts.post_id AND user_id = $1) IS NOT NULL THEN TRUE
             ELSE

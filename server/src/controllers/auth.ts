@@ -55,11 +55,10 @@ export const signup = async (request: FastifyRequest<{ Body: { username: string,
 
         const { rows: doesUserExist } = await fastify.pg.query('SELECT email FROM users WHERE email = $1', [email])
         if (doesUserExist.length > 0) return reply.code(400).send({ user: null, error: 'An account with this email already exists' })
-        console.log(email)
-        const isEmailValid = await fetch(`https://api.ValidEmail.net/?email=${email}&token=${process.env.EMAIL_VAL_KEY}`)
-        const data = await isEmailValid.json()
-        console.log(data)
-        if (!data.IsValid) return reply.code(401).send({ user: null, error: 'Invalid email' })
+
+        // const isEmailValid = await fetch(`https://api.ValidEmail.net/?email=${email}&token=${process.env.EMAIL_VAL_KEY}`)
+        // const data = await isEmailValid.json()
+        // if (!data.IsValid) return reply.code(401).send({ user: null, error: 'Invalid email' })
 
         const hashedPassword = await bcrypt.hash(password, 10)
         const { rows: insertedUserId } = await fastify.pg.transact(async client => {
