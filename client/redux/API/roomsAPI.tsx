@@ -18,6 +18,7 @@ export type Message = {
   date?: string
   username: string
   profile_picture: string
+  room_id?: number
 }
 
 export const roomsAPI = REST_API.injectEndpoints({
@@ -39,10 +40,9 @@ export const roomsAPI = REST_API.injectEndpoints({
         try {
           await cacheDataLoaded
 
-          socket.on('receivedMessage' ,(message: Message) => {
-            console.log('received: ', message)
+          socket.on('receivedMessage', (message: Message) => {
             updateCachedData((draft) => {
-              draft.push(message)
+              if (arg === message.room_id) draft.push(message)
             })
           })
 

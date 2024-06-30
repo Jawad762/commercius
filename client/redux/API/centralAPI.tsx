@@ -2,7 +2,7 @@ import { BaseQueryFn, FetchArgs, FetchBaseQueryError, createApi, fetchBaseQuery 
 import { logOut } from '../userSlice'
 
 const baseQuery = fetchBaseQuery({ 
-  baseUrl: 'https://8c90-94-187-1-254.ngrok-free.app/api/',
+  baseUrl: 'https://commercius.onrender.com/api/',
   prepareHeaders: (headers, { getState }: any) => {
     const token = getState().user.token
     if (token) {

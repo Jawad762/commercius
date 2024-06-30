@@ -55,6 +55,8 @@ const CreatePostModal = ({ showModal, setShowModal }: Props) => {
                 return
             } 
 
+            if (images.length < 1) return
+
             setIsLoading(true)
 
             const urlPromises = images.map((image: string) => uploadImageToFirebase(image))
@@ -70,7 +72,8 @@ const CreatePostModal = ({ showModal, setShowModal }: Props) => {
                 email: user?.email as string,
                 phone_number: user?.phone_number as string,
                 profile_picture: user?.profile_picture as string,
-                user_id: user?.user_id
+                user_id: user?.user_id,
+                date: new Date().toString()
             };
             await createPost(formData)
             Alert.alert('Success', 'Your post is now active!', [

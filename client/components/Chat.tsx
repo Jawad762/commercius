@@ -31,7 +31,8 @@ const Chat = ({ route, navigation }: any) => {
           text: data.text,
           username: user?.username as string,
           profile_picture: user?.profile_picture as string,
-          date: new Date().toISOString()
+          date: new Date().toISOString(),
+          room_id
         }
         socket.emit('sendMessage', message)
         await sendMessage({ message, room_id })

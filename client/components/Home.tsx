@@ -47,13 +47,7 @@ const Home = ({ navigation }: any) => {
         <SafeAreaView style={{ backgroundColor: blue, padding: 20, paddingBottom: 0 }}>
           <CustomText style={{ color: 'white', fontSize: 24 }}>Home</CustomText>
         </SafeAreaView>
-        <View style={{ paddingTop: 20, paddingBottom: 100, borderBottomLeftRadius: 30, borderBottomRightRadius: 30, backgroundColor: blue}}>
-          <View style={{ marginHorizontal: 20, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 2, borderColor: 'white', paddingVertical: 6, paddingHorizontal: 10, borderRadius: 10 }}>
-                <AntDesign name="search1" size={20} color="white" />
-                <TextInput style={{ color: 'white', flex: 1 }} placeholderTextColor={'white'} placeholder='Search'></TextInput>
-              </View>
-          </View>
+        <View style={{ paddingBottom: 100, borderBottomLeftRadius: 30, borderBottomRightRadius: 30, backgroundColor: blue}}>
 
           <Image height={150} style={{ marginTop: 30, marginHorizontal: 20, borderRadius: 10 }} source={{ uri: 'https://i.pinimg.com/originals/fd/cb/98/fdcb9817f051f83db9a6cf32dccb268b.jpg' }}></Image>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Alert, Image, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import CustomText from './CustomText';
 import { FontAwesome6, AntDesign, MaterialCommunityIcons, Ionicons, MaterialIcons } from '@expo/vector-icons';
@@ -8,8 +8,9 @@ import { RootState } from '../redux/store';
 import { useAddToFavoritesMutation } from '../redux/API/favoritesAPI';
 import { useDeletePostMutation } from '../redux/API/postsAPI';
 import { useCreateRoomMutation } from '../redux/API/roomsAPI';
+import { Post } from './BrowsePosts';
 
-const PostDetails = ({ route, navigation }: any) => {
+const PostDetails = ({ route, navigation }: { route: { params: { post: Post } }, navigation: any}) => {
     const { post } = route.params;
     const user = useSelector((state: RootState) => state.user.user)
     const [addToFavorites] = useAddToFavoritesMutation()
@@ -39,7 +40,7 @@ const PostDetails = ({ route, navigation }: any) => {
 
     const handleStartChat = async () => {
         try {
-            const { data } = await startChat({ seller_id: post.user_id }) as { data: { room_id: number } }
+            const { data } = await startChat({ seller_id: post.user_id as number }) as { data: { room_id: number } }
             navigation.navigate('Chat', { room_id: data.room_id, username: post.username, profile_picture: post.profile_picture })
         } catch (error) {
             console.error(error)
@@ -74,12 +75,12 @@ const PostDetails = ({ route, navigation }: any) => {
 
                 <View style={{ padding: 30, backgroundColor: 'white'  }}>
                     <CustomText style={{ fontSize: 28, color: blue }}>{post.title}</CustomText>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', marginTop: 10 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', marginTop: 10, flexWrap: 'wrap' }}>
                         <View style={{ flexDirection: 'row', gap: 8 }}>
                             <FontAwesome6 name="location-dot" size={20} color="orange" />
                             <CustomText style={{ color: blue }}>{post.city}</CustomText>
                         </View>
-                        <CustomText style={{ color: blue }}>3 days ago</CustomText>
+                        <CustomText style={{ color: blue, opacity: 0.5 }}>{new Date(post.date as string).getDay() + '/' + new Date(post.date as string).getMonth() + '/' + new Date(post.date as string).getFullYear() || 'N/A'}</CustomText>
                     </View>
 
                     <View style={{ marginTop: 20 }}>

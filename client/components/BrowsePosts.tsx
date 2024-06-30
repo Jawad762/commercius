@@ -22,6 +22,9 @@ export interface Post {
   email: string
   username: string
   profile_picture: string
+  date?: string
+  description?: string
+  phone_number?: string
 }
 
 const BrowsePosts = ({ route, navigation }: any) => {
@@ -51,7 +54,7 @@ const BrowsePosts = ({ route, navigation }: any) => {
     <View style={{ backgroundColor: blue, flex: 1 }}>
       <View style={{ paddingVertical: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, backgroundColor: blue }}>
         <FontAwesome6 name="location-dot" size={24} color="orange" />
-        <CustomText style={{ color: 'white', fontSize: 20 }}>Beirut, Lebanon</CustomText>
+        <CustomText style={{ color: 'white', fontSize: 20 }}>{user?.country}</CustomText>
       </View>
 
       <View style={{ padding: 20, paddingBottom: 10, backgroundColor: lightGray, borderTopLeftRadius: 30, borderTopRightRadius: 30 }}>

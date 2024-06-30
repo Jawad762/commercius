@@ -6,8 +6,11 @@ export const userAPI = REST_API.injectEndpoints({
     editProfile: builder.mutation<string, User>({
         query: (user) => ({ url: 'users', method: 'PUT', body: user }),
     }),
+    deleteAccount: builder.mutation<string, void>({
+      query: () => ({ url: 'users', method: 'DELETE' })
+    })
   }),
   overrideExisting: true,
 })
 
-export const { useEditProfileMutation } = userAPI
+export const { useEditProfileMutation, useDeleteAccountMutation } = userAPI

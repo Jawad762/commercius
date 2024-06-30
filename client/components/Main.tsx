@@ -40,8 +40,11 @@ export default function Main() {
   const { data } = useCheckAuthQuery()
 
   useEffect(() => {
-    if (data && data.authorized) dispatch(setAuth(true))
-    else dispatch(setAuth(false))
+    if (!data) return
+    if (data.authorized) dispatch(setAuth(true))
+    else {
+      dispatch(setAuth(false))
+    }
   }, [auth, data])
 
   useEffect(() => {
@@ -77,6 +80,7 @@ export default function Main() {
       <Tab.Navigator backBehavior='history' screenOptions={{ headerShown: false }} tabBar={(props) => <BottomTab {...props}/>}>
         <Tab.Screen name='Home' component={Home}/>
         <Tab.Screen name='BrowsePosts' component={BrowsePosts}/>
+        {/* @ts-ignore */}
         <Tab.Screen name='PostDetails' component={PostDetails}/>
         <Tab.Screen name='Account' component={MyAccount}/>
         <Tab.Screen name='EditProfile' component={EditProfile}/>

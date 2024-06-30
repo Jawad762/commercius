@@ -4,18 +4,32 @@ import { blue, lightGray } from '../assets/colors'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
 import CustomText from './CustomText'
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons, AntDesign } from '@expo/vector-icons'
 import { logOut } from '../redux/userSlice'
 import LoadingScreen from './LoadingScreen'
+import { useDeleteAccountMutation } from '../redux/API/userAPI'
 
 const Profile = ({ navigation }: any) => {
     const dispatch = useDispatch()
     const user = useSelector((state: RootState) => state.user.user)
     const [isLoading, setIsLoading] = useState(false)
+    const [deleteUser] = useDeleteAccountMutation()
 
     const handleSignout = async () => {
         try {
             setIsLoading(true)
+            setTimeout(() => {
+                dispatch(logOut())
+            }, 2000)
+        } catch (error) {
+            console.error(JSON.stringify(error))
+        }
+    }
+
+    const handleDelete = async () => {
+        try {
+            setIsLoading(true)
+            await deleteUser()
             setTimeout(() => {
                 dispatch(logOut())
             }, 2000)
@@ -40,7 +54,7 @@ const Profile = ({ navigation }: any) => {
         </View>
 
         <View style={{ flex: 1, gap: 30, padding: 20, backgroundColor: lightGray }}>
-            <View>
+            <View style={{ flex: 1 }}>
                 <Pressable onPress={() => navigation.navigate('EditProfile')} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10, borderBottomWidth: 1, padding: 10, borderTopRightRadius: 10, borderTopLeftRadius: 10 }}>
                     <Ionicons name="person-circle" size={32} color={blue} />
                     <CustomText style={{ color: blue }}>Edit Profile</CustomText>
@@ -51,7 +65,12 @@ const Profile = ({ navigation }: any) => {
                     <CustomText style={{ color: blue }}>Active posts</CustomText>
                     <Ionicons name="chevron-forward" size={28} color={blue} style={{ marginLeft: 'auto' }} />
                 </Pressable>
-                <Pressable style={{ flexDirection: 'row', alignItems: 'center', gap: 10, padding: 10 }} onPress={handleSignout}>
+                <Pressable style={{ flexDirection: 'row', alignItems: 'center', gap: 10, padding: 10 }} onPress={handleDelete}>
+                    <AntDesign name="deleteuser" size={28} color={blue} />
+                    <CustomText style={{ color: blue }}>Delete Account</CustomText>
+                    <Ionicons name="chevron-forward" size={28} color={blue} style={{ marginLeft: 'auto' }} />
+                </Pressable>
+                <Pressable style={{ flexDirection: 'row', alignItems: 'center', gap: 10, padding: 10, marginTop: 'auto' }} onPress={handleSignout}>
                     <Ionicons name="log-out" size={32} color={blue} />
                     <CustomText style={{ color: blue }}>Sign-out</CustomText>
                     <Ionicons name="chevron-forward" size={28} color={blue} style={{ marginLeft: 'auto' }} />
